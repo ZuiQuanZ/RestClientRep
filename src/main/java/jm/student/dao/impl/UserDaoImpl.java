@@ -18,8 +18,8 @@ import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-    @PersistenceContext
-    EntityManager entityManager;
+//    @PersistenceContext
+//    EntityManager entityManager;
 
     private static HttpHeaders headersuser = new HttpHeaders();
    // headersuser.setContentType(MediaType.APPLICATION_JSON);

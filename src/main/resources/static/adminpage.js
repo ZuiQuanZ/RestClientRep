@@ -1,9 +1,19 @@
-function showModal(id, login, password) {
+function showModal(id) {
+    $.ajax({
+        type:'get',
+        url:'/admin/getUser',
+        data: {id:id},
+        success: function (user) {
+            $('#id-input-edit-hidden').val(user.id);
+            $('#login-input-edit').val(user.login);
+            $('#pass-input-edit').val(user.password);
+            $('#myModal').modal();
+        },
+        error: function (message) {
+            console.log(message);
+        }
+    })
 
-    $('#id-input-edit-hidden').val(id);
-    $('#login-input-edit').val(login);
-    $('#pass-input-edit').val(password);
-    $('#myModal').modal();
 }
 
 
@@ -144,7 +154,7 @@ function ajaxGet() {
                     '<td>' + getRoles(user.roles) + '</td>' +
                     '<td> \n' +
                     '<div class="btn-group-vertical btn-group-xs"> \n' +
-                    '<a onclick="showModal(' + user.id + ',\'' + user.login + '\',\'' + user.password + '\')" \n' +
+                    '<a onclick="showModal(' + user.id + ')" \n' +
                     'class="btn btn-default"> \n' +
                     '<i class="glyphicon glyphicon-pencil"></i>Edit</a> \n' +
                     '<a class="btn btn-success"\n' +

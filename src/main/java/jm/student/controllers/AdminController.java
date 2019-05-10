@@ -5,10 +5,7 @@ import jm.student.models.User;
 import jm.student.service.abstraction.RoleService;
 import jm.student.service.abstraction.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +34,11 @@ public class AdminController {
     @PostMapping(path = "/admin/editUser", consumes = "application/json")
     public void editUser(@RequestBody User user) {
         userService.editUser(user);
+    }
+
+    @GetMapping("/admin/getUser")
+    public User getUser(Long id) {
+        return userService.getById(id);
     }
 
     @GetMapping("/admin/getUsers")
