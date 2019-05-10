@@ -15,11 +15,13 @@ $(document).ready(function () {
         logRoles = $('#roled').text();
         var roles = [];
 
-        for (var i = 0; i < idRoles.length; i++) {
-            roles[i] = {
-                id: idRoles[i],
-                role: logRoles[i]
-            };
+        if (idRoles && idRoles.length) {
+            for (var i = 0; i < idRoles.length; i++) {
+                roles[i] = {
+                    id: idRoles[i],
+                    role: logRoles[i]
+                };
+            }
         }
 
         var user = {
@@ -54,8 +56,8 @@ function delRest(id) {
             console.log(message);
         },
         success: function () {
-            // todo: попробовать document
-            window.location = '/admin';
+            ajaxGet();
+            $('#myTab a[href="#user-panel"]').tab('show');
         }
     });
 
@@ -70,13 +72,14 @@ function addUser(login, password) {
     logRoles = $('#rol').text();
     var roles = [];
 
-    for (var i = 0; i < idRoles.length; i++) {
-        roles[i] = {
-            id: idRoles[i],
-            role: logRoles[i]
-        };
+    if (idRoles && idRoles.length) {
+        for (var i = 0; i < idRoles.length; i++) {
+            roles[i] = {
+                id: idRoles[i],
+                role: logRoles[i]
+            };
+        }
     }
-
     var user = {login: login, password: password, roles: roles};
     $.ajax({
         type: 'post',
@@ -106,7 +109,6 @@ function getAllRoles() {
         type: 'get',
         url: '/admin/getAllRoles',
         success: function (result) {
-            //todo: работает после обновления!
             $.each(result, function (i, role) {
                 var selectForm = '<option value="' + role.id + '">' + role.role + '</option>';
                 $('#rol').append(selectForm);

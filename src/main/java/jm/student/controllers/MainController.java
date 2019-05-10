@@ -59,7 +59,8 @@ public class MainController {
     public ModelAndView usersListPage(@ModelAttribute ModelAndView model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        System.out.println(user.getId());
+        System.out.println(userService.getById(user.getId()));
         model.addObject("admin", userService.getById(user.getId()));
         return model;
     }

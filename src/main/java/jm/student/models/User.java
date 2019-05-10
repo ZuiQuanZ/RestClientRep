@@ -26,6 +26,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private Boolean enabled = true;
 
+
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
     @JoinTable(name = "security",
             joinColumns = {@JoinColumn(name = "user_id")},

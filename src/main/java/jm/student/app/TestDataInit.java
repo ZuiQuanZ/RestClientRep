@@ -49,5 +49,13 @@ public class TestDataInit {
 
 		userService.addUser(user);
 
+		User userMe = new User();
+		userMe.setLogin("mixa");
+		userMe.setPassword("user1");
+		Set<Role> userMeRoles = new HashSet<>();
+		userMeRoles.add(roleUser);
+		userMe.setRoles(userMeRoles);
+
+		userService.addUser(userMe);
 	}
 }
