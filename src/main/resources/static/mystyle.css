@@ -34,3 +34,7 @@ body {
 .empty-block {
     height: 88px;
 }
+
+.dropdown{
+    cursor: pointer;
+}
