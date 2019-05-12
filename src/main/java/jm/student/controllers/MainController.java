@@ -59,8 +59,6 @@ public class MainController {
     public ModelAndView usersListPage(@ModelAttribute ModelAndView model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(user.getId());
-        System.out.println(userService.getById(user.getId()));
         model.addObject("admin", userService.getById(user.getId()));
         return model;
     }
@@ -73,57 +71,4 @@ public class MainController {
         return model;
     }
 
-//    @GetMapping("/example")
-//     public ModelAndView examPage(@ModelAttribute ModelAndView model) {
-//         model.addObject(userService.getById(Long.valueOf(1)));
-//         return model;
-//     }
-
-
-
-    // todo: реализовать через рест
-//    @GetMapping("/admin/editUser")
-//    public ModelAndView editUserPage(@ModelAttribute ModelAndView model, @RequestParam("id") Long id) {
-//        model.addObject("roles", roleService.getAllRoles());
-//        model.addObject("user", userService.getById(id));
-//        return model;
-//    }
-
-    // todo: реализовать через рест
-//    @PostMapping("/admin/editUser")
-//    public String editUser(@ModelAttribute User user, @RequestParam(value = "roled", required = false) Long[] idRoles) {
-//        Set<Role> roles = new HashSet<>();
-//
-//        if (idRoles != null) {
-//            for (Long id : idRoles) {
-//                roles.add(roleService.getRoleById(id));
-//            }
-//        }
-//
-//        user.setRoles(roles);
-//        userService.editUser(user);
-//        return "redirect:/admin";
-//    }
-
-    // todo: реализовать через рест
-//    @GetMapping("/admin/deleteUser/{id}")
-//    public String deleteUser(@PathVariable("id") Long id) {
-//        userService.removeUser(id);
-//        return "redirect:/admin";
-//    }
-
-    // todo: реализовать через рест
-//    @PostMapping("/admin/addUser")
-//    public String addUser(@ModelAttribute User user, @RequestParam(value = "rol", required = false) Long[] idRoles) {
-//        Set<Role> roles = new HashSet<>();
-//        if (idRoles != null) {
-//            for (Long id : idRoles) {
-//                roles.add(roleService.getRoleById(id));
-//            }
-//        }
-//        user.setRoles(roles);
-//        userService.addUser(user);
-//
-//        return "redirect:/admin";
-//    }
 }

@@ -19,16 +19,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getRoleById(Long id) { return roleDao.getRoleById(id); }
-
-    @Override
-    public void addRole(Role role) { roleDao.addRole(role); }
-
-    @Override
-    public void editRole(Role role) { roleDao.editRole(role); }
-
-    @Override
-    public void removeRole(Long id) { roleDao.removeRole(id); }
-
+    
     @Override
     public List<Role> getAllRoles() { return roleDao.getAllRoles(); }
 }

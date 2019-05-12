@@ -55,7 +55,6 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-        //удаление атрибутов-исключений из сессии
     }
 
 }
