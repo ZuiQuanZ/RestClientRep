@@ -11,10 +11,7 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.aspectj.lang.annotation.Before;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -84,11 +81,13 @@ public class UserDaoImpl implements UserDao {
 
 
 
-    public UserDaoImpl(){}
+    public UserDaoImpl(){
+        this.restTemplate = new RestTemplate(getClientHttpRequestFactory());
+    }
 
     @Override
     public User getUserById(Long id) {
-        RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());
+      //  RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());
         User user = restTemplate.getForEntity("http://localhost:8080/getUser/" + id,
                 User.class).getBody();
         return user;
@@ -98,8 +97,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByLogin(String login) {
         System.out.println("yey");
-        User user = restTemplate.getForEntity("http://localhost:8080/getUserByLogin/" + login,
-                User.class).getBody();
+        ResponseEntity <User> userResponseEntity = restTemplate.getForEntity("http://localhost:8080/getUserByLogin/" + login,
+                User.class);
+        User user = userResponseEntity.getBody();
         return user;
         //return (User) entityManager.createQuery("select u from User u where u.login = :login").setParameter("login", login).getSingleResult();
     }
