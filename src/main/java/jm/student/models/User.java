@@ -4,20 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "users")
 public class User implements UserDetails {
-    @Id
-    @GeneratedValue
 
     private Long id;
 
-    @Column(unique = true)
     private String login;
 
     private String password;
@@ -25,11 +19,6 @@ public class User implements UserDetails {
     @JsonIgnore
     private Boolean enabled = true;
 
-
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
-    @JoinTable(name = "security",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
     public User() {
@@ -92,6 +81,7 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

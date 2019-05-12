@@ -5,11 +5,9 @@ import jm.student.models.User;
 import jm.student.service.abstraction.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Service
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
@@ -25,7 +23,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByLogin(String login) { return userDao.getUserByLogin(login);}
+    public User getUserByLogin(String login) {
+        return userDao.getUserByLogin(login);
+    }
 
     @Override
     public void addUser(User user) {

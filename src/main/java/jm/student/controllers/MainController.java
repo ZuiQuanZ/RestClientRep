@@ -37,7 +37,6 @@ public class MainController {
         ErrorCode code = CodeMessenger.getErrorCode();
         SuccessCode successCode = CodeMessenger.getSuccessCode();
         String user = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(user);
         if (!user.equals("anonymousUser")) {
             model.setViewName("redirect:" + request.getHeader("refer"));
             return model;
