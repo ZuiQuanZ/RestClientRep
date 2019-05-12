@@ -2,6 +2,8 @@ package jm.student.dao.impl;
 
 import jm.student.dao.UserDao;
 import jm.student.models.User;
+import jm.student.secutiry.auth.HttpRequestFactoryClient;
+import org.apache.http.HttpRequestFactory;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
@@ -23,31 +25,11 @@ public class UserDaoImpl implements UserDao {
 
     public RestTemplate restTemplate;
 
-    private HttpComponentsClientHttpRequestFactory getClientHttpRequestFactory() {
-        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
-                = new HttpComponentsClientHttpRequestFactory();
-
-        clientHttpRequestFactory.setHttpClient(httpClient());
-
-        return clientHttpRequestFactory;
-    }
-
-    private HttpClient httpClient() {
-        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-
-        credentialsProvider.setCredentials(AuthScope.ANY,
-                new UsernamePasswordCredentials("admin", "admin"));
-
-        HttpClient client = HttpClientBuilder
-                .create()
-                .setDefaultCredentialsProvider(credentialsProvider)
-                .build();
-        return client;
-    }
+    private HttpRequestFactoryClient requestFactoryClient = new HttpRequestFactoryClient();
 
     @Autowired
     public UserDaoImpl() {
-        this.restTemplate = new RestTemplate(getClientHttpRequestFactory());
+        this.restTemplate = new RestTemplate(requestFactoryClient.getClientHttpRequestFactory());
     }
 
     @Override
