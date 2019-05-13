@@ -2,20 +2,20 @@ package jm.student.controllers;
 
 import jm.student.models.Role;
 import jm.student.models.User;
-import jm.student.service.abstraction.RoleService;
-import jm.student.service.abstraction.UserService;
+import jm.student.services.RoleService;
+import jm.student.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public class AdminController {
+public class RestAdminController {
     private UserService userService;
     private RoleService roleService;
 
     @Autowired
-    private AdminController(UserService userService, RoleService roleService) {
+    private RestAdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }

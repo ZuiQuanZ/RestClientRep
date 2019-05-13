@@ -1,27 +1,23 @@
-package jm.student.dao.impl;
+package jm.student.restTemplateDataAccess.impl;
 
-import jm.student.dao.UserDao;
 import jm.student.models.User;
-import jm.student.secutiry.auth.HttpRequestFactoryClient;
-import org.springframework.beans.factory.annotation.Autowired;
+import jm.student.restTemplateDataAccess.UserRTDA;
+import jm.student.secutiry.serverAuth.HttpRequestFactoryClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository
-public class UserDaoImpl implements UserDao {
+@Component
+public class UserRTDAImpl implements UserRTDA {
 
     public RestTemplate restTemplate;
 
-    private HttpRequestFactoryClient requestFactoryClient = new HttpRequestFactoryClient();
-
-    @Autowired
-    public UserDaoImpl() {
-        this.restTemplate = new RestTemplate(requestFactoryClient.getClientHttpRequestFactory());
+    public UserRTDAImpl() {
+        this.restTemplate = new RestTemplate(HttpRequestFactoryClient.getClientHttpRequestFactory());
     }
 
     @Override
@@ -41,14 +37,14 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void addUser(User user) {
-        restTemplate.postForEntity("http://localhost:8080/addUserFromClient/",
+        restTemplate.postForEntity("http://localhost:8080/addUser/",
                 user, User.class);
 
     }
 
     @Override
     public void editUser(User user) {
-         restTemplate.postForEntity("http://localhost:8080/editUserFromClient/",
+        restTemplate.postForEntity("http://localhost:8080/editUser/",
                 user, User.class).getBody();
     }
 

@@ -1,25 +1,21 @@
-package jm.student.dao.impl;
+package jm.student.restTemplateDataAccess.impl;
 
-import jm.student.dao.RoleDao;
 import jm.student.models.Role;
-import jm.student.secutiry.auth.HttpRequestFactoryClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import jm.student.restTemplateDataAccess.RoleRTDA;
+import jm.student.secutiry.serverAuth.HttpRequestFactoryClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class RoleDaoImpl implements RoleDao {
-
+@Component
+public class RoleRTDAImpl implements RoleRTDA {
 
     public RestTemplate restTemplate;
 
-    private HttpRequestFactoryClient requestFactoryClient = new HttpRequestFactoryClient();
-    @Autowired
-    public RoleDaoImpl() {
-        this.restTemplate = new RestTemplate(requestFactoryClient.getClientHttpRequestFactory());
+    public RoleRTDAImpl() {
+        this.restTemplate = new RestTemplate(HttpRequestFactoryClient.getClientHttpRequestFactory());
     }
 
     @Override

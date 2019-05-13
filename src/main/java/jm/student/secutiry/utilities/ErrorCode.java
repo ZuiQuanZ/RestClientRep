@@ -1,4 +1,4 @@
-package jm.student.secutiry.utility;
+package jm.student.secutiry.utilities;
 
 public enum ErrorCode {
     LOGIN,

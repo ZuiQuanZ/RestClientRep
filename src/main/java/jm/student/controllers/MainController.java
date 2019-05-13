@@ -1,11 +1,11 @@
 package jm.student.controllers;
 
 import jm.student.models.User;
-import jm.student.secutiry.utility.CodeMessenger;
-import jm.student.secutiry.utility.ErrorCode;
-import jm.student.secutiry.utility.SuccessCode;
-import jm.student.service.abstraction.RoleService;
-import jm.student.service.abstraction.UserService;
+import jm.student.secutiry.utilities.CodeMessenger;
+import jm.student.secutiry.utilities.ErrorCode;
+import jm.student.secutiry.utilities.SuccessCode;
+import jm.student.services.RoleService;
+import jm.student.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

@@ -1,11 +1,11 @@
-package jm.student.service.abstraction;
+package jm.student.restTemplateDataAccess;
 
 import jm.student.models.User;
 
 import java.util.List;
 
-public interface UserService {
-    User getById(Long id);
+public interface UserRTDA {
+    User getUserById(Long id);
 
     User getUserByLogin(String login);
 

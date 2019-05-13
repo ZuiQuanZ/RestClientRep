@@ -1,8 +1,8 @@
-package jm.student.service.implementation;
+package jm.student.services.impl;
 
-import jm.student.dao.RoleDao;
+import jm.student.restTemplateDataAccess.RoleRTDA;
 import jm.student.models.Role;
-import jm.student.service.abstraction.RoleService;
+import jm.student.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +10,20 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private RoleDao roleDao;
+    private RoleRTDA roleRTDA;
 
     @Autowired
-    public RoleServiceImpl(RoleDao roleDao) {
-        this.roleDao = roleDao;
+    public RoleServiceImpl(RoleRTDA roleRTDA) {
+        this.roleRTDA = roleRTDA;
     }
 
     @Override
     public Role getRoleById(Long id) {
-        return roleDao.getRoleById(id);
+        return roleRTDA.getRoleById(id);
     }
 
     @Override
     public List<Role> getAllRoles() {
-        return roleDao.getAllRoles();
+        return roleRTDA.getAllRoles();
     }
 }

@@ -1,11 +1,11 @@
-package jm.student.dao;
+package jm.student.services;
 
 import jm.student.models.User;
 
 import java.util.List;
 
-public interface UserDao {
-    User getUserById(Long id);
+public interface UserService {
+    User getById(Long id);
 
     User getUserByLogin(String login);
 

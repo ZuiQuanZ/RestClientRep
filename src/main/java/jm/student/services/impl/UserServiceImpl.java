@@ -1,8 +1,8 @@
-package jm.student.service.implementation;
+package jm.student.services.impl;
 
-import jm.student.dao.UserDao;
+import jm.student.restTemplateDataAccess.UserRTDA;
 import jm.student.models.User;
-import jm.student.service.abstraction.UserService;
+import jm.student.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,40 +10,40 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserDao userDao;
+    private UserRTDA userRTDA;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserServiceImpl(UserRTDA userRTDA) {
+        this.userRTDA = userRTDA;
     }
 
     @Override
     public User getById(Long id) {
-        return userDao.getUserById(id);
+        return userRTDA.getUserById(id);
     }
 
     @Override
     public User getUserByLogin(String login) {
-        return userDao.getUserByLogin(login);
+        return userRTDA.getUserByLogin(login);
     }
 
     @Override
     public void addUser(User user) {
-        userDao.addUser(user);
+        userRTDA.addUser(user);
     }
 
     @Override
     public void editUser(User user) {
-        userDao.editUser(user);
+        userRTDA.editUser(user);
     }
 
     @Override
     public void removeUser(Long id) {
-        userDao.removeUser(id);
+        userRTDA.removeUser(id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return userRTDA.getAllUsers();
     }
 }

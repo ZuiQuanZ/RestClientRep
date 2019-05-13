@@ -1,8 +1,8 @@
 package jm.student.secutiry.handlers;
 
 import jm.student.models.Role;
-import jm.student.secutiry.utility.CodeMessenger;
-import jm.student.secutiry.utility.SuccessCode;
+import jm.student.secutiry.utilities.CodeMessenger;
+import jm.student.secutiry.utilities.SuccessCode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;

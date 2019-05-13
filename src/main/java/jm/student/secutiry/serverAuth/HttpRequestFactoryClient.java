@@ -1,4 +1,4 @@
-package jm.student.secutiry.auth;
+package jm.student.secutiry.serverAuth;
 
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -11,7 +11,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 public class HttpRequestFactoryClient {
     public HttpRequestFactoryClient(){
     }
-    public HttpComponentsClientHttpRequestFactory getClientHttpRequestFactory() {
+    public static HttpComponentsClientHttpRequestFactory getClientHttpRequestFactory() {
         HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
                 = new HttpComponentsClientHttpRequestFactory();
 
@@ -20,7 +20,7 @@ public class HttpRequestFactoryClient {
         return clientHttpRequestFactory;
     }
 
-    private HttpClient httpClient() {
+    private static HttpClient httpClient() {
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
 
         credentialsProvider.setCredentials(AuthScope.ANY,

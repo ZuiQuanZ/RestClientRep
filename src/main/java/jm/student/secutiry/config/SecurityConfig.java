@@ -3,7 +3,7 @@ package jm.student.secutiry.config;
 import jm.student.secutiry.handlers.AuthFailHandler;
 import jm.student.secutiry.handlers.AuthSuccessHandler;
 import jm.student.secutiry.handlers.LogoutSuccessHandler;
-import jm.student.secutiry.service.UserDetailsServiceImpl;
+import jm.student.secutiry.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

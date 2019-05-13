@@ -1,7 +1,7 @@
-package jm.student.secutiry.service;
+package jm.student.secutiry.services;
 
 import jm.student.models.User;
-import jm.student.service.abstraction.UserService;
+import jm.student.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,7 +1,7 @@
 package jm.student.secutiry.handlers;
 
-import jm.student.secutiry.utility.CodeMessenger;
-import jm.student.secutiry.utility.ErrorCode;
+import jm.student.secutiry.utilities.CodeMessenger;
+import jm.student.secutiry.utilities.ErrorCode;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
