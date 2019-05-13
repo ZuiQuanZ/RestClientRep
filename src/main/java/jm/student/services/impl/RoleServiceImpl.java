@@ -1,6 +1,6 @@
 package jm.student.services.impl;
 
-import jm.student.restTemplateDataAccess.RoleRTDA;
+import jm.student.restTemplateDataAccess.RoleRestTemplateDataAccess;
 import jm.student.models.Role;
 import jm.student.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +10,20 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private RoleRTDA roleRTDA;
+    private RoleRestTemplateDataAccess roleRestTemplateDataAccess;
 
     @Autowired
-    public RoleServiceImpl(RoleRTDA roleRTDA) {
-        this.roleRTDA = roleRTDA;
+    public RoleServiceImpl(RoleRestTemplateDataAccess roleRestTemplateDataAccess) {
+        this.roleRestTemplateDataAccess = roleRestTemplateDataAccess;
     }
 
     @Override
     public Role getRoleById(Long id) {
-        return roleRTDA.getRoleById(id);
+        return roleRestTemplateDataAccess.getRoleById(id);
     }
 
     @Override
     public List<Role> getAllRoles() {
-        return roleRTDA.getAllRoles();
+        return roleRestTemplateDataAccess.getAllRoles();
     }
 }

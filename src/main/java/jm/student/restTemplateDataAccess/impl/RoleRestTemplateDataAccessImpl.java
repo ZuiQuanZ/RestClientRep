@@ -1,7 +1,7 @@
 package jm.student.restTemplateDataAccess.impl;
 
 import jm.student.models.Role;
-import jm.student.restTemplateDataAccess.RoleRTDA;
+import jm.student.restTemplateDataAccess.RoleRestTemplateDataAccess;
 import jm.student.secutiry.serverAuth.HttpRequestFactoryClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class RoleRTDAImpl implements RoleRTDA {
+public class RoleRestTemplateDataAccessImpl implements RoleRestTemplateDataAccess {
 
     public RestTemplate restTemplate;
 
-    public RoleRTDAImpl() {
+    public RoleRestTemplateDataAccessImpl() {
         this.restTemplate = new RestTemplate(HttpRequestFactoryClient.getClientHttpRequestFactory());
     }
 

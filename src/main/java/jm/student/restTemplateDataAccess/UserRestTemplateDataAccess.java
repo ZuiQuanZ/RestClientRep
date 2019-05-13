@@ -4,7 +4,7 @@ import jm.student.models.User;
 
 import java.util.List;
 
-public interface UserRTDA {
+public interface UserRestTemplateDataAccess {
     User getUserById(Long id);
 
     User getUserByLogin(String login);

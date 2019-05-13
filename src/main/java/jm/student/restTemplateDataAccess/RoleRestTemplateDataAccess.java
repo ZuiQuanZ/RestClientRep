@@ -4,7 +4,7 @@ import jm.student.models.Role;
 
 import java.util.List;
 
-public interface RoleRTDA {
+public interface RoleRestTemplateDataAccess {
     Role getRoleById(Long id);
 
     List<Role> getAllRoles();
