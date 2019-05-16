@@ -1,5 +1,6 @@
 package jm.student.controllers;
 
+import jm.student.models.Role;
 import jm.student.models.User;
 import jm.student.secutiry.utilities.CodeMessenger;
 import jm.student.secutiry.utilities.ErrorCode;
@@ -7,6 +8,7 @@ import jm.student.secutiry.utilities.SuccessCode;
 import jm.student.services.RoleService;
 import jm.student.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +30,12 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String toLoginPage() {
-        return "redirect:/login";
+    public String toLoginPage(@AuthenticationPrincipal User user ) {
+        if (user!=null){
+            if (user.getRoles().contains(new Role("ADMIN"))){
+                return "redirect:/admin";
+            } else return "redirect:/user";
+        }else return "redirect:/login";
     }
 
     @GetMapping("/login")
