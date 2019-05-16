@@ -1,5 +1,6 @@
 package jm.student.secutiry.extractors;
 
+import jm.student.models.Role;
 import jm.student.models.User;
 import jm.student.services.RoleService;
 import jm.student.services.UserService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Component
 public class GoogleAuthorityExtractor implements AuthoritiesExtractor {
@@ -25,16 +27,17 @@ public class GoogleAuthorityExtractor implements AuthoritiesExtractor {
 
         String login = (String) map.get("email");
         User user = userService.getUserByLogin(login);
-        if (user.getRoles().contains(roleService.getRoleById(Long.valueOf(1)))&&user.getRoles().contains(roleService.getRoleById(Long.valueOf(2)))){
+        Set<Role> userRoles = user.getRoles();
+        if (userRoles.contains(roleService.getRoleById(Long.valueOf(1)))&&userRoles.contains(roleService.getRoleById(Long.valueOf(2)))){
             List<GrantedAuthority> AUTHORITIES
             = AuthorityUtils.commaSeparatedStringToAuthorityList(
             "USER,ADMIN");
             return AUTHORITIES;
-        } else if (user.getRoles().contains(roleService.getRoleById(Long.valueOf(1)))){
+        } else if (userRoles.contains(roleService.getRoleById(Long.valueOf(1)))){
             List<GrantedAuthority> AUTHORITIES
             = AuthorityUtils.createAuthorityList("ADMIN");
             return AUTHORITIES;
-        } else if (user.getRoles().contains(roleService.getRoleById(Long.valueOf(2)))){
+        } else if (userRoles.contains(roleService.getRoleById(Long.valueOf(2)))){
             List<GrantedAuthority> AUTHORITIES
                     = AuthorityUtils.createAuthorityList("USER");
             return AUTHORITIES;
