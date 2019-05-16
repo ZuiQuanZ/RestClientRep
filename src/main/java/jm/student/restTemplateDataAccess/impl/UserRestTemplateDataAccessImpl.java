@@ -29,7 +29,8 @@ public class UserRestTemplateDataAccessImpl implements UserRestTemplateDataAcces
 
     @Override
     public User getUserByLogin(String login) {
-        ResponseEntity<User> userResponseEntity = restTemplate.getForEntity("http://localhost:8080/getUserByLogin/" + login,
+
+        ResponseEntity<User> userResponseEntity = restTemplate.getForEntity("http://localhost:8080/getUserByLogin/" + login + "/1",
                 User.class);
         User user = userResponseEntity.getBody();
         return user;

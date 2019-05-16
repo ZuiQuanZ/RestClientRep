@@ -1,9 +1,7 @@
 package jm.student.secutiry.config;
 
-import jm.student.models.Role;
-import jm.student.models.User;
-import jm.student.secutiry.extractors.MyAuthorityExtractor;
-import jm.student.secutiry.extractors.MyPrincipalExtractor;
+import jm.student.secutiry.extractors.GoogleAuthorityExtractor;
+import jm.student.secutiry.extractors.GooglePrincipalExtractor;
 import jm.student.secutiry.handlers.AuthFailHandler;
 import jm.student.secutiry.handlers.AuthSuccessHandler;
 import jm.student.secutiry.handlers.LogoutSuccessHandler;
@@ -19,16 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
-
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Configuration
 @ComponentScan("jm.student")
@@ -88,11 +78,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PrincipalExtractor principalExtractor() {
-        return new MyPrincipalExtractor(userService);
+        return new GooglePrincipalExtractor();
     }
 
     @Bean
     public AuthoritiesExtractor authoritiesExtractor() {
-        return new MyAuthorityExtractor();
+        return new GoogleAuthorityExtractor();
     }
 }
