@@ -30,12 +30,12 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String toLoginPage(@AuthenticationPrincipal User user ) {
-        if (user!=null){
-            if (user.getRoles().contains(new Role("ADMIN"))){
+    public String toLoginPage(@AuthenticationPrincipal User user) {
+        if (user != null) {
+            if (user.getRoles().contains(new Role("ADMIN"))) {
                 return "redirect:/admin";
             } else return "redirect:/user";
-        }else return "redirect:/login";
+        } else return "redirect:/login";
     }
 
     @GetMapping("/login")

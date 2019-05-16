@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 @Component
 public class GooglePrincipalExtractor implements PrincipalExtractor {
 
@@ -19,7 +20,7 @@ public class GooglePrincipalExtractor implements PrincipalExtractor {
     @Autowired
     private RoleService roleService;
 
-    public GooglePrincipalExtractor(){
+    public GooglePrincipalExtractor() {
     }
 
     @Override
@@ -28,9 +29,8 @@ public class GooglePrincipalExtractor implements PrincipalExtractor {
         String login = (String) map.get("email");
         User user = userService.getUserByLogin(login);
 
-        //System.out.println(user);
-        if (user==null){
-            User newUser = new User(login,sub,true);
+        if (user == null) {
+            User newUser = new User(login, sub, true);
             Set<Role> roles = new HashSet<>();
             roles.add(roleService.getRoleById(Long.valueOf(2)));
             newUser.setRoles(roles);
@@ -38,6 +38,6 @@ public class GooglePrincipalExtractor implements PrincipalExtractor {
         }
 
 
-          return userService.getUserByLogin(login);
+        return userService.getUserByLogin(login);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,8 +19,6 @@ import java.util.Set;
 public class GoogleAuthorityExtractor implements AuthoritiesExtractor {
     @Autowired
     private UserService userService;
-    @Autowired
-    private RoleService roleService;
 
     @Override
     public List<GrantedAuthority> extractAuthorities
@@ -28,21 +27,31 @@ public class GoogleAuthorityExtractor implements AuthoritiesExtractor {
         String login = (String) map.get("email");
         User user = userService.getUserByLogin(login);
         Set<Role> userRoles = user.getRoles();
-        if (userRoles.contains(roleService.getRoleById(Long.valueOf(1)))&&userRoles.contains(roleService.getRoleById(Long.valueOf(2)))){
-            List<GrantedAuthority> AUTHORITIES
-            = AuthorityUtils.commaSeparatedStringToAuthorityList(
-            "USER,ADMIN");
-            return AUTHORITIES;
-        } else if (userRoles.contains(roleService.getRoleById(Long.valueOf(1)))){
-            List<GrantedAuthority> AUTHORITIES
-            = AuthorityUtils.createAuthorityList("ADMIN");
-            return AUTHORITIES;
-        } else if (userRoles.contains(roleService.getRoleById(Long.valueOf(2)))){
-            List<GrantedAuthority> AUTHORITIES
-                    = AuthorityUtils.createAuthorityList("USER");
-            return AUTHORITIES;
-        }
+        String googleAuth = new String();
 
-      return null;
+        for (Role role: userRoles
+             ) {
+            googleAuth+=role.getAuthority();
+            googleAuth+=',';
+        }
+        googleAuth.substring(0,googleAuth.length()-1);
+        List<GrantedAuthority> authorities= AuthorityUtils.commaSeparatedStringToAuthorityList(googleAuth);
+ //        List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles.toString());
+//        if (userRoles.contains(roleService.getRoleById(Long.valueOf(1)))&&userRoles.contains(roleService.getRoleById(Long.valueOf(2)))){
+//            List<GrantedAuthority> AUTHORITIES
+//            = AuthorityUtils.commaSeparatedStringToAuthorityList(
+//            "USER,ADMIN");
+//            return AUTHORITIES;
+//        } else if (userRoles.contains(roleService.getRoleById(Long.valueOf(1)))){
+//            List<GrantedAuthority> AUTHORITIES
+//            = AuthorityUtils.createAuthorityList("ADMIN");
+//            return AUTHORITIES;
+//        } else if (userRoles.contains(roleService.getRoleById(Long.valueOf(2)))){
+//            List<GrantedAuthority> AUTHORITIES
+//                    = AuthorityUtils.createAuthorityList("USER");
+//            return AUTHORITIES;
+//        }
+
+      return authorities;
     }
 }
