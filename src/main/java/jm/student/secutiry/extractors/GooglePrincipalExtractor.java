@@ -26,10 +26,11 @@ public class GooglePrincipalExtractor implements PrincipalExtractor {
     public Object extractPrincipal(Map<String, Object> map) {
         String sub = (String) map.get("sub");
         String login = (String) map.get("email");
-        //User user = userService.getUserByLogin(login);
-        User newUser = new User(login,sub,true);
+        User user = userService.getUserByLogin(login);
+
         //System.out.println(user);
-        if (newUser!=null){
+        if (user==null){
+            User newUser = new User(login,sub,true);
             Set<Role> roles = new HashSet<>();
             roles.add(roleService.getRoleById(Long.valueOf(2)));
             newUser.setRoles(roles);
