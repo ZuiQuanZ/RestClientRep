@@ -30,7 +30,7 @@ public class GooglePrincipalExtractor implements PrincipalExtractor {
         User user = userService.getUserByLogin(login);
 
         if (user == null) {
-            User newUser = new User(login, sub, true);
+            User newUser = new User(login, sub);
             Set<Role> roles = new HashSet<>();
             roles.add(roleService.getRoleById(Long.valueOf(2)));
             newUser.setRoles(roles);

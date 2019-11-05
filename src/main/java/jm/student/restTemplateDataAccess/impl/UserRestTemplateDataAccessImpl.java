@@ -56,6 +56,7 @@ public class UserRestTemplateDataAccessImpl implements UserRestTemplateDataAcces
 
     @Override
     public List<User> getAllUsers() {
+
         User[] userListFromServer = restTemplate.getForEntity("http://localhost:8080/getUserList",
                 User[].class).getBody();
         List<User> allUsers = new ArrayList<>();

@@ -26,16 +26,10 @@ public class RoleRestTemplateDataAccessImpl implements RoleRestTemplateDataAcces
 
     @Override
     public List<Role> getAllRoles() {
-        Role[] roleListFromServer = restTemplate.getForEntity("http://localhost:8080/getRoleList",
-                Role[].class).getBody();
-        List<Role> allRoles = new ArrayList<>();
-        for (Role role : roleListFromServer
-        ) {
-            allRoles.add(role);
-        }
-        return allRoles;
+        List<Role> roleListFromServer = restTemplate.getForEntity("http://localhost:8080/getRoleList",
+                List.class).getBody();
+        return roleListFromServer;
     }
-
 
 }
 

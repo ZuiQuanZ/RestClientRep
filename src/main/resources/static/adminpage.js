@@ -1,3 +1,40 @@
+$(document).ready(function () {
+    ajaxGet();
+})
+
+function ajaxGet() {
+    $.ajax({
+        type: "GET",
+        url: "/admin/getUsers",
+        success: function (result) {
+            $('#users_table tbody').empty();
+            $.each(result, function (i, user) {
+                var userRow = '<tr>' +
+                    '<td>' + user.id + '</td>' +
+                    '<td>' + user.login + '</td>' +
+                    '<td>' + user.password + '</td>' +
+                    '<td>' + getRoles(user.roles) + '</td>' +
+                    '<td> \n' +
+                    '<div class="btn-group-vertical btn-group-xs"> \n' +
+                    '<a onclick="showModal(' + user.id + ')" \n' +
+                    'class="btn btn-default"> \n' +
+                    '<i class="glyphicon glyphicon-pencil"></i>Edit</a> \n' +
+                    '<a class="btn btn-success"\n' +
+                    'onclick="delRest(' + user.id + ')"><i class="glyphicon glyphicon-trash"></i>Delete</a> \n' +
+                    '</div></td> \n' +
+                    '</tr>';
+
+                $('#users_table tbody').append(userRow);
+
+            });
+
+        },
+        error: function (message) {
+            console.log(message);
+        }
+    });
+}
+
 function showModal(id) {
     $.ajax({
         type:'get',
@@ -134,43 +171,6 @@ function getAllRoles() {
         }
 
     })
-}
-
-$(document).ready(function () {
-    ajaxGet();
-})
-
-function ajaxGet() {
-    $.ajax({
-        type: "GET",
-        url: "/admin/getUsers",
-        success: function (result) {
-            $('#users_table tbody').empty();
-            $.each(result, function (i, user) {
-                var userRow = '<tr>' +
-                    '<td>' + user.id + '</td>' +
-                    '<td>' + user.login + '</td>' +
-                    '<td>' + user.password + '</td>' +
-                    '<td>' + getRoles(user.roles) + '</td>' +
-                    '<td> \n' +
-                    '<div class="btn-group-vertical btn-group-xs"> \n' +
-                    '<a onclick="showModal(' + user.id + ')" \n' +
-                    'class="btn btn-default"> \n' +
-                    '<i class="glyphicon glyphicon-pencil"></i>Edit</a> \n' +
-                    '<a class="btn btn-success"\n' +
-                    'onclick="delRest(' + user.id + ')"><i class="glyphicon glyphicon-trash"></i>Delete</a> \n' +
-                    '</div></td> \n' +
-                    '</tr>';
-
-                $('#users_table tbody').append(userRow);
-
-            });
-
-        },
-        error: function (message) {
-            console.log(message);
-        }
-    });
 }
 
 function getRoles(roles) {

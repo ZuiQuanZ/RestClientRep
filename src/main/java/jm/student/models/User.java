@@ -16,25 +16,20 @@ public class User implements UserDetails {
 
     private String password;
 
-    @JsonIgnore
-    private Boolean enabled = true;
-
     private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String login, String password, Boolean enabled) {
+    public User(String login, String password) {
         this.login = login;
         this.password = password;
-        this.enabled = enabled;
     }
 
-    public User(Long id, String login, String password, Boolean enabled) {
+    public User(Long id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
-        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -53,17 +48,8 @@ public class User implements UserDetails {
         this.login = login;
     }
 
-
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Boolean getEnadled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
     }
 
     public Set<Role> getRoles() {
@@ -109,8 +95,9 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 
     @Override
@@ -120,12 +107,11 @@ public class User implements UserDetails {
         User user = (User) o;
         return Objects.equals(getId(), user.getId()) &&
                 Objects.equals(getLogin(), user.getLogin()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getEnadled(), user.getEnadled());
+                Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getLogin(), getPassword(), getEnadled());
+        return Objects.hash(getId(), getLogin(), getPassword());
     }
 }

@@ -75,14 +75,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/error");
     }
-
-    @Bean
-    public PrincipalExtractor principalExtractor() {
-        return new GooglePrincipalExtractor();
-    }
-
-    @Bean
-    public AuthoritiesExtractor authoritiesExtractor() {
-        return new GoogleAuthorityExtractor();
-    }
 }

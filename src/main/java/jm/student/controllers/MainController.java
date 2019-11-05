@@ -38,6 +38,10 @@ public class MainController {
         } else return "redirect:/login";
     }
 
+    @GetMapping("/example")
+    public String toExamplePage(){
+        return "example";
+    }
     @GetMapping("/login")
     public ModelAndView loginPage(ModelAndView model, HttpServletRequest request) {
         ErrorCode code = CodeMessenger.getErrorCode();
@@ -69,8 +73,7 @@ public class MainController {
     }
 
     @GetMapping("/user")
-    public ModelAndView userPage(@ModelAttribute ModelAndView model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public ModelAndView userPage(@ModelAttribute ModelAndView model, @AuthenticationPrincipal User user) {
         model.addObject("roles", roleService.getAllRoles());
         model.addObject("user", userService.getById(user.getId()));
         return model;

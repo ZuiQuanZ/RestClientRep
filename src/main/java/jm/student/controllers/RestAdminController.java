@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 public class RestAdminController {
+
     private UserService userService;
     private RoleService roleService;
 
@@ -24,7 +25,6 @@ public class RestAdminController {
     public void delRest(Long id) {
         userService.removeUser(id);
     }
-
 
     @PostMapping(path = "/admin/addUser", consumes = "application/json")
     public void addUser(@RequestBody User user) {
@@ -47,7 +47,7 @@ public class RestAdminController {
     }
 
     @GetMapping("/admin/getAllRoles")
-    public  List<Role> getAllRoles(){
+    public List<Role> getAllRoles() {
         return roleService.getAllRoles();
     }
 
